@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <title>GauchoGuys - Profile</title>
+ <script src="claim.js" type="module"></script>
+</head>
+<body>
+
+
+
+
+
+    <style>
+     * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e0f7ff;
+    color: #333;
+}
+
+.remove {
+    height: 10px;
+    width: auto;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 3px;
+}
+
+.report {
+
+}
+
+.delete {
+    border: red 1px solid;
+    color: red;
+}
+
+.delete:hover{
+color: white;
+background-color: red;
+}
+
+header {
+    text-align: center;
+    margin: 20px;
+}
+
+header h1 {
+    color: black;
+    margin-bottom: 5px;
+}
+
+header h2 {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 0;
+}
+
+.form-container,
+.rating-list {
+    width: 90%; /* Adjust width for mobile */
+    max-width: 500px; /* Keep max width for larger screens */
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input, textarea, select {
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%; /* Ensure full width on mobile */
+}
+
+button {
+    /*margin-top: 15px;*/
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.rating {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.rating:last-child {
+    border-bottom: none;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #007BFF;
+    color: white;
+    padding: 2px 8px;
+    margin: 5px 2px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+}
+
+#rating-blocks {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.rating-block {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #aaa;
+
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.rating-block:hover {
+    background-color: #bbb;
+}
+
+.rating-block.active {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+}
+
+#scorebox {
+    width: 100%; /* Make scorebox width responsive */
+    max-width: 500px;
+    height: 55px;
+    display: none;
+    border-radius: 5px;
+    padding: 1px;
+}
+
+#hisscore {
+    margin: 9px;
+    text-shadow:
+        1px 1px 0px white,   /* Bottom-right */
+       -1px -1px 0px white,  /* Top-left */
+        -1px 1px 0px white,  /* Bottom-left */
+        1px -1px 0px white;  /* Top-right */
+}
+
+    </style>
+    <header>
+        <a href="index.html" style="text-decoration: none;"><h1>🦝 GauchoGuys</h1></a>
+    </header>
+
+
+
+
+    <div class="form-container">
+        <div id="scorebox"><b><h1 id="hisscore"></h1></b></div>
+        <h3><span id="name" style="font-size: 2em"></span></h3>
+        <button onclick="rate()" id="ratebtn" style="margin-bottom: 5px;">Rate him</button>
+        <form id="rating-form">
+            <label for="score">Rate him out of 10:</label>
+            <div id="rating-blocks">
+                <!-- Blocks for each rating -->
+                <span class="rating-block" data-value="1">1</span>
+                <span class="rating-block" data-value="2">2</span>
+                <span class="rating-block" data-value="3">3</span>
+                <span class="rating-block" data-value="4">4</span>
+                <span class="rating-block" data-value="5">5</span>
+                <span class="rating-block" data-value="6">6</span>
+                <span class="rating-block" data-value="7">7</span>
+                <span class="rating-block" data-value="8">8</span>
+                <span class="rating-block" data-value="9">9</span>
+                <span class="rating-block" data-value="10">10</span>
+            </div>
+            <input type="hidden" id="score" name="score" required>
+
+
+            <input type="text" id="tags" name="tags" placeholder="Tags: e.g., cute irl, fun, funny">
+
+
+            <textarea id="comment" name="comment" rows="3" placeholder="write your comment..." style="margin: 8px 0px 9px 0px" required></textarea>
+
+
+
+            <div style="color: #00509e; font-family: 'Courier New', Courier, monospace; font-size: .6em; margin: 5px 0px 5px 0px">
+            By submitting this review, you agree to the <a href="tos.html">terms and privacy policy</a>. You are prohibited from posting any speech that violates community guidelines, including illegal forms of speech such as defamation, threats, doxxing, etc. We take all reported reviews very seriously.
+            </div>
+
+            <div class="g-recaptcha" data-sitekey="6LdxApwqAAAAAOoqUMpbGVdRmFYT8_pjt70cFBJO"></div>
+            <button type="submit" style="margin-top: 5px;">submit anonymous review</button><br/><br/>
+
+        </form>
+    <br/>
+       <div> <a href="" id="paylink" onclick="window.alert('You must login first')">Are you <span id="name2"></span>? Claim this profile</a> (<a id="google-login-btn" style="color:purple; text-decoration: underline">login</a>) </div>
+    </div>
+
+    <div class="rating-list">
+
+
+    </div>
+
+    <script>
+    let userId;
+    let userName;
+    let userEmail;
+
+
+
+
+
+
+
+
+function displaypaymentlink(email){
+
+
+  paylink = document.getElementById("paylink");
+  paylink.onclick = "";
+  paylink.href = "https://buy.stripe.com/XXXXXXXXXXXXXXX?prefilled_email=" + email;
+
+
+}
+
+
+
+
+    document.getElementById("rating-form").style.display = "none"
+
+    function rate(){
+        document.getElementById("ratebtn").style.display = "none"
+        document.getElementById("rating-form").style.display = "block"
+
+    }
+
+
+
+
+    apiurl = "https://web-production-5f62.up.railway.app"
+
+    if(sessionStorage.getItem('bottom')==='true'){
+        window.scrollTo(0,document.body.scrollHeight);
+        sessionStorage.removeItem('bottom');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//var SUBCOLL = "";
+
+
+const ratingList = document.querySelector('.rating-list');
+const params = new URLSearchParams(window.location.search);
+const name = params.get('name') || '';
+
+document.getElementById("name").innerHTML = name;
+document.getElementById("name2").innerHTML = name;
+
+fetch(apiurl+`/fetch?name=${name}`)
+  .then((response) => {
+    if (!response.ok) {
+    ratingList.innerHTML = "No reviews yet! Be the first to review him";
+    //window.alert(`::: ${response.status}`)
+      return Promise.reject(new Error(`HTTP error! Status: ${response.status}`));
+    }
+    return response.json();
+  })
+  .then((data) => {
+    //window.alert("cool")
+
+    const reviews = data.reviews || [];
+    sumreviews = 0;
+
+
+
+    //SUBCOLL = data.id;
+    //console.log(SUBCOLL)
+
+//     if(reviews.length == 0){
+//
+//
+//     }
+
+    reviews.forEach((review) => {
+    const { index, rating, tags, comment } = review;
+    //window.alert(review.comment)
+    sumreviews += rating;
+
+    const ratingDiv = document.createElement('div');
+    ratingDiv.classList.add('rating');
+
+
+      const ratingContent = `
+        <p> #${index}: <strong>anonymous</strong> rates <strong>${name} </strong>a <span style="font-size: 1.2em; color:${rating > 6 ? '#6fa351' : rating < 4 ? '#d3444e' : '#d4b267'}; font-weight: bold;">${rating}/10</span></p>
+
+        ${tags && tags.trim() !== ''
+            ?
+            `<p><strong>Tags:</strong>`+
+            tags.split(',')
+                .map((tag) => `<span class="tag">${tag.trim()}</span>`)
+                .join(' ')
+            : ''}
+        </p>
+
+        <p><strong>Comment:</strong> "${comment}"</p>
+        <div style="float: right"><a href="" class="report remove" onclick="window.alert('Please report via the email in the TOS. You must state what guideline is being violated. If no guideline is being violated, then you may have to claim this account to delete the review')">Report</a> <a href="" class="delete remove" onclick="deleter('${index}', '${name}')">Delete</a></div>
+        <br/>
+      `;
+
+      ratingDiv.innerHTML = ratingContent;
+      s = sumreviews/reviews.length;
+      document.getElementById("hisscore").innerHTML = s.toFixed(2) + " / 10";
+
+        scorecolor = "#f5d98c";
+        if(s > 6){
+            scorecolor = "#a3e396";
+        }
+        if(s < 4){
+            scorecolor = "#ff858f";
+        }
+
+      document.getElementById("scorebox").style.display = "block";
+      document.getElementById("scorebox").style.backgroundColor = scorecolor;
+
+      ratingList.appendChild(ratingDiv);
+    });
+
+
+
+  })
+  .catch((error) => {
+    console.error('Error fetching ratings:', error);
+  });
+
+
+initializeForm();
+
+
+
+
+
+
+function initializeForm() {
+
+        const form = document.getElementById('rating-form');
+
+
+
+          const ratingBlocks = document.querySelectorAll('.rating-block');
+            const scoreInput = document.getElementById('score');
+
+            ratingBlocks.forEach(block => {
+                block.addEventListener('click', () => {
+                    // Remove the active class from all blocks
+                    ratingBlocks.forEach(b => b.classList.remove('active'));
+
+                    // Add the active class to the clicked block
+                    block.classList.add('active');
+
+                    // Set the hidden input value
+                    scoreInput.value = block.getAttribute('data-value');
+                });
+            });
+
+
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            const score = scoreInput.value;
+            const tags = document.getElementById('tags').value;
+            const comment = document.getElementById('comment').value;
+            //const pictureInput = document.getElementById('picture');
+
+            // Ensure required fields are filled
+            if (!score || !comment) {
+                alert('Please provide a rating and a comment!');
+                return;
+            }
+
+             if (!grecaptcha.getResponse()) {
+                    alert("Please complete the reCAPTCHA.");
+                    return;
+                }
+
+
+
+            // Prepare the data payload
+            //console.log(SUBCOLL)
+            const payload = {
+                //subcollection: SUBCOLL,
+                name: name,
+                rating: score,
+                tags: tags,
+                comment: comment,
+                recaptchaResponse: grecaptcha.getResponse(),
+            };
+
+            try {
+                const response = await fetch(apiurl+`/review`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                sessionStorage.setItem('bottom', 'true');
+                    location.reload(true);
+
+
+                    // form.reset(); // Clear the form
+                    // scoreInput.value = ''; // Clear the hidden score input
+
+                    // // Reset active state on rating blocks
+                    // const ratingBlocks = document.querySelectorAll('.rating-block');
+                    // ratingBlocks.forEach(b => b.classList.remove('active'));
+                } else {
+                    console.error('Error submitting review:', result, result.error);
+                    window,alert('Error '+ result.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error '+ result.error);
+            }
+        });
+
+}
+
+
+
+
+
+function deleter(index, name){
+
+    if(!userEmail){
+        window.alert("You must sign in and claim this account to delete reviews");
+        return;
+    }
+
+    const url = apiurl + `/delete?email=${encodeURIComponent(userEmail)}&index=${encodeURIComponent(index)}&name=${encodeURIComponent(name)}`;
+
+    fetch(url, {
+        method: "GET",
+    })
+    .then(response => {
+        if (!response.ok) {
+            window.alert("You did not claim this account");
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Response data:", data);
+
+
+    })
+    .catch(error => {
+        console.error("Error fetching URL:", error);
+    });
+
+    window.alert("Reload the page")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>

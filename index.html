@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
+<!--<script src="https://www.google.com/recaptcha/api.js?render=6Lfk0psqAAAAAAdQoxwFNpW8sir2Wic0DMdB3Djs"></script>-->
+<link rel="icon" type="image/png" href="favicon.png">
+    <meta property="og:title" content="RateMyProfessor.com but for isla vista dudes" />
+<meta property="og:description" content="anonymously rate ur experience with isla vista men (like RateMyProfessor.com but for dudes)" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GauchoGuys</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #b3d9ff; /* Baby blue */
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            margin: 5px;
+        }
+
+        h1 {
+            color: #00509e; /* Slightly darker baby blue */
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #003f7e;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #00509e;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #003f7e;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🦝 GauchoGuys</h1>
+        <h2>anonymously rate ur experience with isla vista men <span style="font-size: .9em">(like RateMyProfessor but for iv girls to rate iv dudes)</span></h2>
+        <form id="searchForm">
+
+
+            <input type="text" id="name" name="name" placeholder="his name">
+            <!--<div class="g-recaptcha" data-sitekey=""></div>-->
+            <!--<input type="hidden" id="recaptcha-token" name="g-recaptcha-response">-->
+            <button type="submit" id="submitBtn">view anonymously</button>
+        </form>
+        <div id="error" class="error" style="display: none;">Please fill in at least one field.</div>
+
+    <br/><br/>
+    <a href="dev.pdf" style="height: 20px; background: purple; color: white; border-radius: 5px;padding:10px">VIEW PERSONAL LETTER FROM DEV</a>
+    <br/><br/>
+   <a href="tos.html">TOS | PRIVACY | LEGAL | CONTACT</a>
+
+    </div>
+
+
+
+    <script>
+    function keepOnlyNumbers(input) {
+    return input.replace(/[^0-9]/g, '');
+    }
+
+
+    const form = document.getElementById('searchForm');
+    const errorDiv = document.getElementById('error');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+
+
+            if (!name && !instagram && !number) {
+                errorDiv.style.display = 'block';
+            } else {
+                errorDiv.style.display = 'none';
+                const query = new URLSearchParams({ name}).toString();
+
+
+
+                window.location.href = `./profile.html?${query}`;
+            }
+        });
+    </script>
+
+
+</body>
+</html>
