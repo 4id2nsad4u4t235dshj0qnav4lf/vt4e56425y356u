@@ -227,7 +227,7 @@ button:hover {
 
         </form>
     <br/>
-       <div> <a href="" id="paylink" onclick="window.alert('You must login first')">Are you <span id="name2"></span>? Claim this profile</a> (<a id="google-login-btn" style="color:purple; text-decoration: underline">login</a>) </div>
+       <div> Are you <span id="name2"></span>? <a href="" id="paylink" onclick="window.alert('You must login first')">Claim</a> or <a onclick="window.alert('Login first')" id="unclaim">unclaim</a> this profile (<a id="google-login-btn" style="color:purple; text-decoration: underline">login</a>) </div>
     </div>
 
     <div class="rating-list">
@@ -255,6 +255,9 @@ function displaypaymentlink(email){
   paylink.href = "https://buy.stripe.com/dR65nig4g5gI1Xi000?prefilled_email=" + email;
 
 
+    unclaim = document.getElementById("unclaim");
+    unclaim.onclick= "";
+    unclaim.href = "https://billing.stripe.com/p/login/14k8xY7wQeWGd8Y4gg";
 }
 
 
