@@ -487,9 +487,14 @@ function initializeForm() {
 
 function deleter(index, name){
 
-    if(!userEmail){
+    if(!userEmail && localStorage.getItem('userEmail')){
         window.alert("You must sign in and claim this account to delete reviews");
         return;
+    }
+
+    if(!userEmail){
+
+        userEmail = localStorage.getItem('userEmail');
     }
 
     const url = apiurl + `/delete?email=${encodeURIComponent(userEmail)}&index=${encodeURIComponent(index)}&name=${encodeURIComponent(name)}`;
