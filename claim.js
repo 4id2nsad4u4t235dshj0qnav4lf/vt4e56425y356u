@@ -43,6 +43,7 @@ function signin() {
       const user = result.user;
       userId = user.uid;
       userEmail = user.email
+      localStorage.setItem('userEmail', userEmail); 
       userName = user.displayName;
 
       //const userDiv = document.getElementById('user');
@@ -89,9 +90,10 @@ function signin() {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    const userId = user.uid;
-    const userName = user.displayName;
-    const userEmail = user.email;
+    userId = user.uid;
+    userName = user.displayName;
+    userEmail = user.email;
+    localStorage.setItem('userEmail', userEmail); 
 
     const userDiv = document.getElementById('user');
     const googleLoginBtn = document.getElementById('google-login-btn');
