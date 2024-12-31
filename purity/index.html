@@ -221,7 +221,7 @@
       const query = Array.from({ length: questions.length }, (_, i) => {
         return `${i + 1}=${form.has(String(i + 1)) ? 't' : 'f'}`;
       }).join('&');
-      window.location.href = `purity/result.html?${query}`;
+      window.location.href = `result.html?${query}`;
     });
   </script>
 </body>
