@@ -95,6 +95,25 @@ FOLLOW US ON INSTA: <a href="https://instagram.com/GauchoGuys">@GauchoGuys</a>
     }
     });
 
+
+    const decimalNumber = parseInt(params.get('s'), 10);
+    
+    const binaryString = decimalNumber.toString(2);
+    
+    binaryString.split('').forEach((bit, index) => {
+      if (bit === '1') {
+        checked +=1;
+         console.log(`Parameter ${key+1} is set to 't'`);
+
+        list.innerHTML += `${index+1}. ${questions[index]} <br/>`
+        
+      }
+    });
+
+
+
+    
+
     const purityScore = 100 - checked;
      document.getElementById('score').textContent = `${purityScore}`;
 
