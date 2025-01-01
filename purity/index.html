@@ -132,7 +132,8 @@ FOLLOW US ON INSTA: <a href="https://instagram.com/GauchoGuys">@GauchoGuys</a>
         return `${form.has(String(i + 1)) ? '1' : '0'}`;
       }).join('');
       console.log(query)
-      window.location.href = `result.html?s=${parseInt(query, 2)}`;
+      const decimalResult = BigInt(`0b${query}`);
+      window.location.href = `result.html?s=${decimalResult}`;
     });
   </script>
 </body>
