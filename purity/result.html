@@ -98,7 +98,7 @@ FOLLOW US ON INSTA: <a href="https://instagram.com/GauchoGuys">@GauchoGuys</a>
 
     const decimalNumber = BigInt(params.get('s'));
     
-    const binaryString = decimalNumber.toString(2);
+    const binaryString = decimalNumber.toString(2).padStart(100, '0');
     
     binaryString.split('').forEach((bit, index) => {
       if (bit === '1') {
