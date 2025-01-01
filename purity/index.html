@@ -129,9 +129,10 @@ FOLLOW US ON INSTA: <a href="https://instagram.com/GauchoGuys">@GauchoGuys</a>
       e.preventDefault();
       const form = new FormData(this);
       const query = Array.from({ length: questions.length }, (_, i) => {
-        return `${i + 1}=${form.has(String(i + 1)) ? 't' : 'f'}`;
-      }).join('&');
-      window.location.href = `result.html?${query}`;
+        return `${form.has(String(i + 1)) ? '1' : '0'}`;
+      }).join('');
+      console.log(query)
+      window.location.href = `result.html?s=${parseInt(query, 2)}`;
     });
   </script>
 </body>
