@@ -96,7 +96,7 @@ FOLLOW US ON INSTA: <a href="https://instagram.com/GauchoGuys">@GauchoGuys</a>
     });
 
 
-    const decimalNumber = parseInt(params.get('s'), 10);
+    const decimalNumber = BigInt(params.get('s'));
     
     const binaryString = decimalNumber.toString(2);
     
