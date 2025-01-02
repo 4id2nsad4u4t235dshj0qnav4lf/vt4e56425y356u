@@ -97,6 +97,6 @@ const questions = ["housed a friend from another school for Deltopia",
 "has mommy issues or attracts dudes with mommy issues",
 "ghosted someone or has been ghosted ",
 "overshared something to your fling",
-"reviewed a boy on GauchoGuys"
+"reviewed a boy on <a href='https://gauchoguys.com'>GauchoGuys</a>"
 
     ];
