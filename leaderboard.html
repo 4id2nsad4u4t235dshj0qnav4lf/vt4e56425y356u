@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard</title>
+    <title>GauchoGuys Leaderboard</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta property="og:title" content="GauchoGuys Leaderboard" />
+<meta property="og:description" content="anonymously rate ur experience with isla vista men (like RateMyProfessor.com but for dudes)" />
+<meta name="description" content="anonymously rate ur experience with isla vista men (like RateMyProfessor.com but for dudes)" />
+    <meta property="og:image" content="https://gauchoguys.com/gaucho.jpg">
+<meta property="og:image:alt" content="GauchoGuys: review anonymously">
     <style>
         * {
             box-sizing: border-box;
@@ -41,6 +47,7 @@
             justify-content: space-between;
             width: 90%;
             max-width: 1200px;
+            height:calc(100vh - 30px); ;
         }
 
         .leaderboard {
@@ -115,29 +122,104 @@
             color: white;
             background-color: red;
         }
+        
+        
+        #popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 300px;
+      padding: 20px;
+      text-align: center;
+      z-index: 1000;
+      display: none; /* Initially hidden */
+    }
+
+    #popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      display: none; /* Initially hidden */
+    }
+
+    #popup button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: black;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #popup button:hover {
+      background-color: #0056b3;
+    }
     </style>
 </head>
 <body>
+    
+    <div id="popup-overlay"></div>
+  <div id="popup">
+    <h2>⚠️ Caution</h2>
+    <ul>
+      <li>
+        <b>Legal Speech:</b> Making comments and reviews about people, including their first and last names, is legal and falls under protected speech.
+      </li>
+      <li>
+        <b>Prohibited Content:</b> Reviews must not include vulnerable personally identifiable information (PII) that could be considered doxxing or harassment.
+      </li>
+      <li>
+        <b>Reporting Violations:</b> If you see reviews that violate community guidelines, please report them immediately.
+      </li>
+      <li>
+        <b>Clarification:</b> A bad review does not necessarily constitute harassment.
+      </li>
+      <li>
+        <b>Agreement:</b> By continuing, you agree to the <a href="tos.html">Terms</a>.
+      </li>
+    </ul>
+
+    <button id="closePopup">Okay</button>
+  </div>
 
 <header>
     <h1>Leaderboard</h1>
-    <h2>Top 100 & Bottom 100</h2>
+    <h2>GauchoGuys.com</h2>
 </header>
 
 <div class="leaderboard-container">
     <!-- Top 100 Section -->
     <div class="leaderboard" id="top-100">
-        <h2>Top 100</h2>
+        <h2>Best</h2>
     </div>
 
     <!-- Bottom 100 Section -->
     <div class="leaderboard" id="bottom-100">
-        <h2>Bottom 100</h2>
+        <h2>Worst</h2>
     </div>
 </div>
 
 <script>
+    window.onload = function () {
+      document.getElementById("popup-overlay").style.display = "block";
+      document.getElementById("popup").style.display = "block";
+    };
 
+    // Close the popup when the "Okay" button is clicked
+    document.getElementById("closePopup").onclick = function () {
+      document.getElementById("popup-overlay").style.display = "none";
+      document.getElementById("popup").style.display = "none";
+    };
 
     // Function to determine button color based on score
     function getButtonColor(score) {
