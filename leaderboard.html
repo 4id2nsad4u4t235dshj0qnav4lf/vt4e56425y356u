@@ -195,6 +195,7 @@
 <header>
     <h1>GauchoGuys Leaderboard</h1>
     <h2>Best & Worst</h2>
+    <h5 id="updated"></h5>
 </header>
 
 <div class="leaderboard-container">
@@ -275,7 +276,7 @@ fetch('https://web-production-5f62.up.railway.app/leaderboard')
     .then(data => {
         const top100 = data.top_100; // Array of dictionaries
         const bottom100 = data.bottom_100; // Array of dictionaries
-
+        document.getElementById("updated").innerText=data.last_updated;
         // Render top 100 and bottom 100
         renderLeaderboard(top100, 'top-100');
         renderLeaderboard(bottom100, 'bottom-100');
