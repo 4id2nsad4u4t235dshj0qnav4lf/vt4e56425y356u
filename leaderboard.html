@@ -232,19 +232,27 @@
         }
     }
 
-function createPlayerElement(name, avgScore, rank) {
-    const element = document.createElement('div');
-    element.className = 'player';
 
-    // Customize the display format
-    element.innerHTML = `
-        <span class="name">${name}</span>
-        <span class="avg-score">Avg Score: ${avgScore.toFixed(2)}</span>
-        <span class="rank">Rank: ${rank}</span>
-    `;
 
-    return element;
-}
+
+        function createPlayerElement(name, avgScore, rank) {
+        const playerDiv = document.createElement('div');
+        playerDiv.classList.add('player');
+
+        const button = document.createElement('button');
+        button.textContent = name + " • " + avgScore.toFixed(2);
+        button.style.backgroundColor = getButtonColor(avgScore);
+        button.onclick = () => {
+            window.location.href = `https://gauchoguys.com/profile?name=${name}`;
+        };
+        
+        
+
+        playerDiv.appendChild(button);
+
+        return playerDiv;
+    }
+
 
 
 function renderLeaderboard(leaderboardData, containerId) {
