@@ -35,7 +35,7 @@
             /*max-width: 400px;
             margin: 5px;*/
             z-index: 999;
-
+            margin-top:-50px;
             font-size: clamp(12px, 2vw, 20px)
         }
 
@@ -111,8 +111,8 @@
         </form>
         </center>
         <div id="error" class="error" style="display: none;">Please enter a name.</div>
-
-
+        <br/>
+        <button style="width:100%;max-width:350px;background-color: gray" onclick="window.alert('Leaderboard will be published on Feb 8th')" id="lead">leaderboard</button>
 
     <br/><br/>
    <a href="tos.html" style="color: #00509e">TOS | PRIVACY | LEGAL | CONTACT</a>
@@ -124,6 +124,32 @@
 
 
     <script>
+    
+        
+    function timeUntil(targetDate) {
+        const now = new Date();
+        const target = new Date(targetDate);
+    
+        if (target <= now) {
+            console.log("The target date has already passed!");
+            return;
+        }
+    
+        const diffMs = target - now; // Difference in milliseconds
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24)); // Convert to days
+        const diffHours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Remaining hours
+    
+        return `${diffDays} days and ${diffHours} hours.`;
+    }
+
+document.getElementById("lead").innerText = "leaderboard - "+timeUntil("2025-02-08T12:00:00");
+
+
+    
+    
+    
+    
+    
     function keepOnlyNumbers(input) {
     return input.replace(/[^0-9]/g, '');
     }
