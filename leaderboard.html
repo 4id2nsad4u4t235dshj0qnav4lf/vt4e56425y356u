@@ -232,47 +232,50 @@
         }
     }
 
-    // Function to create player elements
-    function createPlayerElement(name, score) {
-        const playerDiv = document.createElement('div');
-        playerDiv.classList.add('player');
+function createPlayerElement(name, avgScore, rank) {
+    const element = document.createElement('div');
+    element.className = 'player';
 
-        const button = document.createElement('button');
-        button.textContent = name + " - " + score.toFixed(2);
-        button.style.backgroundColor = getButtonColor(score);
-        button.onclick = () => {
-            window.location.href = `https://gauchoguys.com/profile?name=${name}`;
-        };
-        
-        
+    // Customize the display format
+    element.innerHTML = `
+        <span class="name">${name}</span>
+        <span class="avg-score">Avg Score: ${avgScore.toFixed(2)}</span>
+        <span class="rank">Rank: ${rank}</span>
+    `;
 
-        playerDiv.appendChild(button);
+    return element;
+}
 
-        return playerDiv;
-    }
 
-    // Function to render players in leaderboard
-    function renderLeaderboard(leaderboardData, containerId) {
-        const container = document.getElementById(containerId);
-        leaderboardData.forEach(([name, score]) => {
-            const playerElement = createPlayerElement(name, score);
-            container.appendChild(playerElement);
-        });
-    }
+function renderLeaderboard(leaderboardData, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = ''; // Clear the container before rendering
 
-   //fetch('https://web-production-5f62.up.railway.app/leaderboard')
-        .then(response => response.json())
-        .then(data => {
-            const top100 = data.top_100;
-            const bottom100 = data.bottom_100;
+    leaderboardData.forEach(player => {
+        const { name, avg_score, rank } = player;
 
-            // Render top 100 and bottom 100
-            renderLeaderboard(top100, 'top-100');
-            renderLeaderboard(bottom100, 'bottom-100');
-        })
-        .catch(error => {
-            console.error('Error fetching leaderboard data:', error);
-        });
+        // Customize how the player is displayed
+        const playerElement = createPlayerElement(name, avg_score, rank);
+
+        container.appendChild(playerElement);
+    });
+}
+
+
+fetch('https://web-production-5f62.up.railway.app/leaderboard')
+    .then(response => response.json())
+    .then(data => {
+        const top100 = data.top_100; // Array of dictionaries
+        const bottom100 = data.bottom_100; // Array of dictionaries
+
+        // Render top 100 and bottom 100
+        renderLeaderboard(top100, 'top-100');
+        renderLeaderboard(bottom100, 'bottom-100');
+    })
+    .catch(error => {
+        console.error('Error fetching leaderboard data:', error);
+    });
+
 </script>
 
 </body>
