@@ -181,6 +181,13 @@ button:hover {
         1px -1px 0px white;  /* Top-right */
 }
 
+.rating-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
     </style>
     <header>
         <a href="index.html" style="text-decoration: none;"><h1>🦝 GauchoGuys</h1></a>
@@ -336,7 +343,7 @@ fetch(apiurl+`/fetch?name=${name}`)
 //     }
 
     reviews.forEach((review) => {
-    const { index, rating, tags, comment } = review;
+    const { index, rating, tags, comment, views } = review;
     //window.alert(review.comment)
     sumreviews += rating;
 
@@ -357,7 +364,12 @@ fetch(apiurl+`/fetch?name=${name}`)
         </p>
 
         <p><strong>Comment:</strong> "${comment}"</p>
-        <div style="float: right"><a href="" class="report remove" onclick="window.alert('Please report via the email in the TOS. You must state what guideline is being violated. If no guideline is being violated, then you may have to claim this account to delete the review')">Report</a> <a href="" class="delete remove" onclick="deleter('${index}', '${name}')">Delete</a></div>
+
+        <div class="rating-actions">
+            <p style="margin: 0;">👀 ${views}</p>
+            
+            <div style="float: right"><a href="" class="report remove" onclick="window.alert('Please report via the email in the TOS. You must state what guideline is being violated. If no guideline is being violated, then you may have to claim this account to delete the review')">Report</a> <a href="" class="delete remove" onclick="deleter('${index}', '${name}')">Delete</a></div>
+        </div>
         <br/>
       `;
 
