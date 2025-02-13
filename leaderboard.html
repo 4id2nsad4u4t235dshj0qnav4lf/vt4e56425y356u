@@ -242,7 +242,7 @@
         playerDiv.classList.add('player');
 
         const button = document.createElement('button');
-        button.textContent = `#${rank} ${name}`; //+ " • " + avgScore.toFixed(2);
+        button.textContent = `#${place} ${name}`; //+ " • " + avgScore.toFixed(2);
         button.style.backgroundColor = getButtonColor(avgScore);
         button.onclick = () => {
             window.location.href = `https://gauchoguys.com/profile?name=${name}`;
