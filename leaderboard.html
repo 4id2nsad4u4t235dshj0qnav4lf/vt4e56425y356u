@@ -194,8 +194,8 @@
   </div>
 
 <header>
-    <h1>GauchoGuys Leaderboard</h1>
-    <h2>100 best & 100 worst scores</h2>
+    <h1><a href="https://gauchoguys.com" style="text-decoration:none">🦝🥇 GauchoGuys</a> Leaderboard</h1>
+    <h2>top 250 best & 250 worst scores</h2>
     <h5 id="updated" style="color:#e0f7ff"></h5>
 </header>
 
@@ -237,12 +237,12 @@
 
 
 
-        function createPlayerElement(name, avgScore, rank) {
+        function createPlayerElement(name, avgScore, rank, place) {
         const playerDiv = document.createElement('div');
         playerDiv.classList.add('player');
 
         const button = document.createElement('button');
-        button.textContent = name + " • " + avgScore.toFixed(2);
+        button.textContent = `#${rank} ${name}`; //+ " • " + avgScore.toFixed(2);
         button.style.backgroundColor = getButtonColor(avgScore);
         button.onclick = () => {
             window.location.href = `https://gauchoguys.com/profile?name=${name}`;
@@ -260,13 +260,13 @@
 function renderLeaderboard(leaderboardData, containerId) {
     const container = document.getElementById(containerId);
     container.innerHTML = ''; // Clear the container before rendering
-
+    place = 1;
     leaderboardData.forEach(player => {
         const { name, avg_score, rank } = player;
 
         // Customize how the player is displayed
-        const playerElement = createPlayerElement(name, avg_score, rank);
-
+        const playerElement = createPlayerElement(name, avg_score, rank, place);
+        place++;
         container.appendChild(playerElement);
     });
 }
