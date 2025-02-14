@@ -243,14 +243,16 @@
 
         const button = document.createElement('button');
         thing = `#${place}`;
-        if(place==1){
-            thing =`🥇`;
-        }
-        else if(place==2){
-            thing = `🥈`;
-        }
-        else if(place==3){
-            thing = `🥉`;
+        if(avgScore > 5){
+            if(place==1){
+                thing =`🥇`;
+            }
+            else if(place==2){
+                thing = `🥈`;
+            }
+            else if(place==3){
+                thing = `🥉`;
+            }
         }
             
         button.innerHTML = `<span style="font-size: 85%; font-weight: bold;">${thing}</span> ${name}`; 
