@@ -242,7 +242,7 @@
         playerDiv.classList.add('player');
 
         const button = document.createElement('button');
-        thing = thing = `#${place}`
+        thing = `#${place}`;
         if(place==1){
             thing =`🥇`;
         }
@@ -253,7 +253,7 @@
             thing = `🥉`;
         }
             
-        button.innerHTML = `<span style="font-size: 80%;">${place}</span> ${name}`; 
+        button.innerHTML = `<span style="font-size: 90%;">${thing}</span> ${name}`; 
             
         button.style.backgroundColor = getButtonColor(avgScore);
         button.onclick = () => {
